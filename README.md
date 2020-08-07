@@ -6,7 +6,7 @@ Also used pyLDAvis to visualise the results of topic modelling.
 # Cleaning and Preprocessing
 
 # importing customized stopwords from customized_stopwords.txt
-```
+```ruby
 with open ('customized_stopwords', 'rb') as fp:
     customized_stopwords = pickle.load(fp)
 more_stop_words = ['finish','start','tomorrow','work','agree','think','middle','dicide','write','haven','understand','print','call','return','talk','happen']   
