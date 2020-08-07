@@ -58,5 +58,11 @@ for doc in docs:
         cd = preprocess(word)
         cleaned_docs.append(cd)
 ```
-    
+# Preparing dictionary,document-term-matrix for LDA implementaton and implementing LDA model
+```ruby
+dictionary = gensim.corpora.Dictionary(cleaned_docs)
+dictionary.filter_extremes(no_below=1, no_above=0.5, keep_n=100000) # optional
+bow_corpus = [dictionary.doc2bow(doc) for doc in cleaned_docs]
+ldamodels = gensim.models.ldamodel.LdaModel(bow_corpus, num_topics = 4, id2word=dictionary, passes=30)
+```
         
