@@ -3,7 +3,7 @@
 Topic modelling with LDA.   
 Also used pyLDAvis to visualise the results of topic modelling.  
 
-# Cleaning and Preprocessing
+## Cleaning and Preprocessing
 
 ```ruby
 with open ('customized_stopwords', 'rb') as fp:
@@ -26,7 +26,7 @@ def preprocess(text):
             
     return result
 ```
-# Importing document data from a bunch of documents
+## Importing document data from a bunch of documents
 
 ```ruby
 combined_words = ""
@@ -49,7 +49,7 @@ for transcript_file_name in glob.iglob('./transcripts/train//*.*', recursive=Tru
     docs.append([words_in_file])
  ```
     
-# preparing data for LDA model
+## preparing data for LDA model
 
 ```ruby
 cleaned_docs = []
@@ -58,7 +58,7 @@ for doc in docs:
         cd = preprocess(word)
         cleaned_docs.append(cd)
 ```
-# Preparing dictionary,document-term-matrix for LDA implementaton and implementing LDA model
+## Preparing dictionary,document-term-matrix for LDA implementaton and implementing LDA model
 ```ruby
 dictionary = gensim.corpora.Dictionary(cleaned_docs)
 dictionary.filter_extremes(no_below=1, no_above=0.5, keep_n=100000) # optional
