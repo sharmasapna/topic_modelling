@@ -30,7 +30,7 @@ def preprocess(text):
             
     return result
 ```
-## Importing data data from a bunch of documents
+## Importing data from a bunch of documents 
 
 ```ruby
 combined_words = ""
