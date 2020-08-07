@@ -49,7 +49,7 @@ for transcript_file_name in glob.iglob('./transcripts/train//*.*', recursive=Tru
     docs.append([words_in_file])
  ```
     
-## preparing data for LDA model
+## Preparing data for LDA model
 
 ```ruby
 cleaned_docs = []
@@ -65,4 +65,48 @@ dictionary.filter_extremes(no_below=1, no_above=0.5, keep_n=100000) # optional
 bow_corpus = [dictionary.doc2bow(doc) for doc in cleaned_docs]
 ldamodels = gensim.models.ldamodel.LdaModel(bow_corpus, num_topics = 4, id2word=dictionary, passes=30)
 ```
+## Printing the output
+```ruby
+for i in ldamodels.print_topics(num_words = 18): 
+    for j in i: print (j)
+```
+## Using pyLDAvis to visualize
+```ruby
+import pyLDAvis.gensim
+pyLDAvis.enable_notebook()
+vis = pyLDAvis.gensim.prepare(ldamodels, bow_corpus, dictionary=ldamodels.id2word)
+vis
+```
+
+## Testing on unseen document
+```ruby
+unseen_doc_file_path = './transcripts/test/unseen_transcript.txt'
+combined_words = ""
+docs = []
+data = open(unseen_doc_file_path).readlines()
+speaker_data = {line.split(":")[0]:line.split(":")[1] for line in data}
+words_in_file = ""
+speaker_dic ={}
+for name,words in  speaker_data.items():
+    words = words.replace("\n","").lower()
+    words_in_file = words_in_file + words
+    if name.split("_")[0] in speaker_dic:
+        speaker_dic[name.split("_")[0]] += words
+    else:
+        speaker_dic[name.split("_")[0]] = words
+    #print("Number of words in the file :",str(len(words_in_file)))
+combined_words += words_in_file
+docs.append([words_in_file])
+cleaned_docs = []
+for doc in docs:
+    for word in doc:
+        cd = preprocess(word)
+        cleaned_docs.append(cd)
+        
+bow_vector = dictionary.doc2bow(cleaned_docs[0])
+
+for index, score in sorted(ldamodels[bow_vector], key=lambda tup: -1*tup[1]):
+    print("Score: {}\t Topic: {}".format(score, ldamodels.print_topic(index, 7)))   
+```
+
         
