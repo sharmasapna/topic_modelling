@@ -1,7 +1,9 @@
 # topic_modelling
 
 Topic modelling with LDA.   
-Also used pyLDAvis to visualise the results of topic modelling.  
+LDA assumes that documents consists of a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.
+Refer  https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/?#   detailed explanation on the matrix factorization and the inter working of LDA model.
+ 
 
 ## Cleaning and Preprocessing
 
