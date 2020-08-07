@@ -5,7 +5,6 @@ Also used pyLDAvis to visualise the results of topic modelling.
 
 # Cleaning and Preprocessing
 
-# importing customized stopwords from customized_stopwords.txt
 ```ruby
 with open ('customized_stopwords', 'rb') as fp:
     customized_stopwords = pickle.load(fp)
@@ -27,3 +26,37 @@ def preprocess(text):
             
     return result
 ```
+# Importing document data from a bunch of documents
+
+```ruby
+combined_words = ""
+docs = []
+for transcript_file_name in glob.iglob('./transcripts/train//*.*', recursive=True):
+    #print(os.path.basename(transcript_file_name))
+    data = open(transcript_file_name).readlines()
+    speaker_data = {line.split(":")[0]:line.split(":")[1] for line in data}
+    words_in_file = ""
+    speaker_dic ={}
+    for name,words in  speaker_data.items():
+        words = words.replace("\n","").lower()
+        words_in_file = words_in_file + words
+        if name.split("_")[0] in speaker_dic:
+            speaker_dic[name.split("_")[0]] += words
+        else:
+            speaker_dic[name.split("_")[0]] = words
+    #print("Number of words in the file :",str(len(words_in_file)))
+    combined_words += words_in_file
+    docs.append([words_in_file])
+ ```
+    
+# preparing data for LDA model
+
+```ruby
+cleaned_docs = []
+for doc in docs:
+    for word in doc:
+        cd = preprocess(word)
+        cleaned_docs.append(cd)
+```
+    
+        
