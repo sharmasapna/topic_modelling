@@ -1,6 +1,6 @@
 # topic_modelling
 
-## Topic modelling with LDA.   
+## Topic modelling with LDA.  (with BOW - Bag of words approach)
 LDA assumes that documents consists of a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.   
 Refer the following for detailed explanation about working of LDA model.   
 
@@ -112,5 +112,13 @@ bow_vector = dictionary.doc2bow(cleaned_docs[0])
 for index, score in sorted(ldamodels[bow_vector], key=lambda tup: -1*tup[1]):
     print("Score: {}\t Topic: {}".format(score, ldamodels.print_topic(index, 7)))   
 ```
+
+The result was not as desired. There could be several reasons and I think in our case increasing the training data will improve model accuracy
+
+
+## Major drawbacks of bow.  
+1. We need to create huge vectors with empty spaces in order to represent a number (sparse matrix) which consumes memory and space.   
+2. It doesn't maintain any context information. It doesn't care about the order in which the words appear in a sentence. For instance, it treats the sentences "Bottle is in the car" and "Car is in the bottle" equally, which are totally different sentences.
+
 
         
