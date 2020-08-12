@@ -1,6 +1,8 @@
 # topic_modelling
 
-## Topic modelling with LDA.  (with BOW - Bag of words approach)
+## Topic modelling with LDA.  
+1. BOW - Bag of words approach
+2. TF-IDF Approach
 LDA assumes that documents consists of a mixture of topics. Those topics then generate words based on their probability distribution. Given a dataset of documents, LDA backtracks and tries to figure out what topics would create those documents in the first place.   
 Refer the following for detailed explanation about working of LDA model.   
 
