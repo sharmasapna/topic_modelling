@@ -69,6 +69,9 @@ dictionary.filter_extremes(no_below=1, no_above=0.5, keep_n=100000) # optional
 bow_corpus = [dictionary.doc2bow(doc) for doc in cleaned_docs]
 ldamodels = gensim.models.ldamodel.LdaModel(bow_corpus, num_topics = 4, id2word=dictionary, passes=30)
 ```
+bow_corpus :
+Gensim creates a unique id for each word in the document. The produced corpus shown above is a mapping of (word_id, word_frequency).
+For example, (0, 7) above implies, word id 0 occurs seven times in the first document. Likewise, word id 1 occurs thrice and so on
 ## Printing the output
 ```ruby
 for i in ldamodels.print_topics(num_words = 18): 
@@ -119,6 +122,14 @@ The result was not as desired. There could be several reasons and I think in our
 ## Major drawbacks of bow.  
 1. We need to create huge vectors with empty spaces in order to represent a number (sparse matrix) which consumes memory and space.   
 2. It doesn't maintain any context information. It doesn't care about the order in which the words appear in a sentence. For instance, it treats the sentences "Bottle is in the car" and "Car is in the bottle" equally, which are totally different sentences.
+
+## Hyper Parameter tuning
+The alpha and beta parameters
+Here, alpha represents document-topic density - with a higher alpha, documents are made up of more topics, and with lower alpha, documents contain fewer topics.
+Alpha is the hyper parameter for the Dirichlet prior. The Dirichlet prior is the distribution from which we draw theta. And theta becomes the parameter that decides what shape the topic distribution is. So essentially, alpha influences how we draw topic distributions. 
+Beta represents topic-word density - with a high beta, topics are made up of most of the words in the corpus, and with a low beta they consist of few words.
+
+
 
 
         
