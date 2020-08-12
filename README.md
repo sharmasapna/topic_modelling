@@ -130,6 +130,17 @@ Alpha is the hyper parameter for the Dirichlet prior. The Dirichlet prior is the
 Beta represents topic-word density - with a high beta, topics are made up of most of the words in the corpus, and with a low beta they consist of few words.
 
 
+## Perplexity and Topic Coherence 
 
+
+## Coherence Parameters
+
+"C_v" measure is based on a sliding window, one-set segmentation of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity.  
+
+"C_p" is based on a sliding window, one-preceding segmentation of the top words and the confirmation measure of Fitelson’s coherence.  
+"C_uci" measure is based on a sliding window and the pointwise mutual information (PMI) of all word pairs of the given top words.  
+"C_umass" is based on document cooccurrence counts, a one-preceding segmentation and a logarithmic conditional probability as confirmation measure.  
+"C_npmi" is an enhanced version of the C_uci coherence using the normalized pointwise mutual information (NPMI).  
+"C_a" is baseed on a context window, a pairwise comparison of the top words and an indirect confirmation measure that uses normalized pointwise mutual information (NPMI) and the cosine similarity.  
 
         
