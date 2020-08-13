@@ -7,6 +7,18 @@ LDA assumes that documents consists of a mixture of topics. Those topics then ge
 Refer the following for detailed explanation about working of LDA model.   
 
 https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/?#   
+
+## Steps in Topic Modelling  
+
+1. Loading data
+2. Data Cleaning
+3. Data transformation: Corpus and Dictionary
+4. Base Model Performance
+5. Hyperparameter Tuning
+6. Final Model
+7. Visualize Results
+8. Testing on Unseen Document
+
  
 
 ## Cleaning and Preprocessing
